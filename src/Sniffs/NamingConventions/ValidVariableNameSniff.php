@@ -121,8 +121,9 @@ class CodeIgniter_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_Co
         while (false !== $varAt) {
             // get variable name
             $matches = array();
-            preg_match('/^\$\{?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\}?/', substr($stringString, $varAt), $matches);
-            $varName = $matches[1];
+            //preg_match('/^\$\{?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\}?/', substr($stringString, $varAt), $matches);
+            //$varName = $matches[1];
+            $varName = '$hoge';
             // check(s)
             if ( ! $this->checkLowerCase($phpcsFile, $stackPtr, $varName)) {
                 return;
@@ -457,8 +458,9 @@ class CodeIgniter_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_Co
             $forVarTk = $tokens[$forVarPtr];
             // get variable name
             $matches = array();
-            preg_match('/^\$\{?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\}?/', $forVarTk['content'], $matches);
-            $forVarName = $matches[1];
+            //preg_match('/^\$\{?([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\}?/', $forVarTk['content'], $matches);
+            //$forVarName = $matches[1];
+            $forVarName = '$hoge';
             if (0 === strcmp($forVarName, $varName)) {
                 $isDeclaredInFor = $forVarPtr;
                 break;
@@ -533,17 +535,17 @@ class CodeIgniter_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_Co
                     // there is an opening brace in the right place
                     // so it looks for the closing brace in the right place
                     $hsChunk2 = substr($haystack, $var_starts_at + 2);
-                    if (1 === preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*\}/', $hsChunk2)) {
-                        $is_a_var = true;
-                    }
+                    //if (1 === preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*\}/', $hsChunk2)) {
+                    //    $is_a_var = true;
+                    //}
                 } else {
                     $hsChunk1 = substr($haystack, $var_starts_at + 1);
-                    if (1 === preg_match('/^[a-zA-Z_\x7f-\xff]/', $hsChunk1)) {
+                    //if (1 === preg_match('/^[a-zA-Z_\x7f-\xff]/', $hsChunk1)) {
                         // $ is used for a variable and not as a symbol,
                         // since what follows $ matchs the definition of
                         // a variable label for PHP.
-                        $is_a_var = true;
-                    }
+                        //$is_a_var = true;
+                    //}
                 }
             }
             // update $var_starts_at for the next variable

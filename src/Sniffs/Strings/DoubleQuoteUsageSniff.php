@@ -154,7 +154,8 @@ class CodeIgniter_Sniffs_Strings_DoubleQuoteUsageSniff extends CodeIgniter_Sniff
                 $hasSpecificSequence = TRUE;
             }
         }
-        $specialMeaningPtrns = array('\[0-7]{1,3}', '\x[0-9A-Fa-f]{1,2}');
+        //$specialMeaningPtrns = array('\x[0-7]{1,3}', '\x[0-9A-Fa-f]{1,2}');
+        $specialMeaningPtrns = array();
         foreach ($specialMeaningPtrns as $splPtrn) {
             if (1 === preg_match("/{$splPtrn}/", $string)) {
                 $hasSpecificSequence = TRUE;

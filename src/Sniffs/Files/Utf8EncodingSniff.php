@@ -103,6 +103,7 @@ class CodeIgniter_Sniffs_Files_Utf8EncodingSniff implements PHP_CodeSniffer_Snif
             )*$%xs',
             $content
         );
+
     }//end _checkUtf8W3c()
 
     /**

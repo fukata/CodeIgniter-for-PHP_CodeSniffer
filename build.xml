@@ -15,7 +15,7 @@
       <fileset dir="${src.dir}"/>
     </copy>
     <!-- delete deprecated file -->
-    <delete file="${dst.dir}/CodeIgniterCodingStandard.php"/>
+    <!-- <delete file="${dst.dir}/CodeIgniterCodingStandard.php"/> -->
   </target>
 
 </project>
