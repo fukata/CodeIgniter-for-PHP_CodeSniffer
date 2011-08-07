@@ -70,7 +70,7 @@ class CodeIgniter_Sniffs_Files_Utf8EncodingSniff implements PHP_CodeSniffer_Snif
             $error = 'File "' . $file_name . '" should be saved with Unicode (UTF-8) encoding, but it did not successfully pass the W3C test.';
             $phpcsFile->addError($error, 0);
         }
-        if ( ! self::_checkUtf8Rfc3629($file_content)) {
+       if ( ! self::_checkUtf8Rfc3629($file_content)) {
             $error = 'File "' . $file_name . '" should be saved with Unicode (UTF-8) encoding, but it did not meet RFC3629 requirements.';
             $phpcsFile->addError($error, 0);
         }
@@ -90,6 +90,9 @@ class CodeIgniter_Sniffs_Files_Utf8EncodingSniff implements PHP_CodeSniffer_Snif
      */
     private static function _checkUtf8W3c($content)
     {
+	if (function_exists("mb_check_encoding") && is_callable("mb_check_encoding")) {
+		return mb_check_encoding($content, 'utf8');
+	}
         return 1 === preg_match(
             '%^(?:
                   [\x09\x0A\x0D\x20-\x7E]            # ASCII
@@ -103,7 +106,6 @@ class CodeIgniter_Sniffs_Files_Utf8EncodingSniff implements PHP_CodeSniffer_Snif
             )*$%xs',
             $content
         );
-
     }//end _checkUtf8W3c()
 
     /**
